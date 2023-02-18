@@ -5,17 +5,17 @@
 
 int main(void)
 {
-	char *path = getenv("PATH");
-	list_t *head = create(path);
-	char *command_path;
+	char inp[] = "/bin/ls -l -a /home";
+	char **args = get_command(inp);
+	int i = 0;
 
-	print_list(head);
-	
-	command_path = search("ls", head);
-	printf("command path is: %s\n", command_path);
+	while (args[i] != NULL)
+	{
+		printf("%s\n", args[i]);
+		i++;
+	}
 
-	free_list(head);
-	free(command_path);
+	free_arr(args);
 
 	return (0);
 }

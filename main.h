@@ -28,5 +28,8 @@ char *_strcat(char *dest, char *src);
 char *search(char *command, list_t *head);
 char *_strdup(const char *s);
 size_t print_list(const list_t *h);
+int count_words(char *s);
+void free_arr(char **arr);
+char **get_command(char *input);
 
 #endif

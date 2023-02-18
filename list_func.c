@@ -62,13 +62,19 @@ void free_list(list_t *head)
 }
 
 
-/* create list function */
+/**
+ * create - creates a linked list from a string
+ * the string is splitted by : and each node contains a word
+ * @s: the string from which the list will be created
+ * Return: the head of the list
+ */
 
 list_t *create(char *s)
 {
 	char *token;
 	const char *delim = ":";
 	list_t *head = NULL;
+
 	token = strtok(s, delim);
 	while (token != NULL)
 	{
