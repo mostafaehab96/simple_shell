@@ -12,9 +12,10 @@
  */
 char *search(char *command, list_t **head)
 {
-	list_t *current;
-	char *command_path;
-	int len = _strlen(command);
+	list_t *current = NULL;
+	char *command_path = NULL;
+	int command_len = _strlen(command);
+	int path_len;
 
 	if (command[0] == '/')
 	{
@@ -26,10 +27,11 @@ char *search(char *command, list_t **head)
 	current = *head;
 	while (current != NULL)
 	{
-		command_path = (char *)malloc(current->len + len + 2);
+		path_len = current->len;
+		command_path = (char *) malloc(sizeof(char) * path_len + command_len + 2);
 		_strcpy(command_path, current->str);
-		_strcat(command_path, "/");
-		_strcat(command_path, command);
+		strcat(command_path, "/");
+		strcat(command_path, command);
 		if (access(command_path, F_OK) != -1)
 			return (command_path);
 		free(command_path);
