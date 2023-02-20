@@ -26,8 +26,8 @@ list_t *add_node_end(list_t **head, const char *str)
 		free(node);
 		return (NULL);
 	}
-	for (len = 0; s[len] != '\0';)
-		len++;
+	len = _strlen(s);
+
 	node->str = s;
 	node->len = len;
 	node->next = NULL;
@@ -43,6 +43,38 @@ list_t *add_node_end(list_t **head, const char *str)
 
 	return (node);
 }
+
+/**
+ * add_node - add new node at the begining of a list
+ * @head: the head of the list
+ * @str: the string to be added in the list node
+ * Return: a pointer to the new node
+ */
+
+list_t *add_node(list_t **head, const char *str)
+{
+	list_t *node;
+	char *s;
+
+	node = malloc(sizeof(list_t));
+	if (node == NULL)
+		return (NULL);
+
+	s = _strdup(str);
+	if (s == NULL)
+	{
+		free(node);
+		return (NULL);
+	}
+
+	node->len = strlen(s);
+	node->str = s;
+	node->next = *head;
+	*head = node;
+
+	return (*head);
+}
+
 
 /**
  * free_list - deletes all nodes in a list
@@ -78,7 +110,7 @@ list_t *create(char *s)
 	token = strtok(s, delim);
 	while (token != NULL)
 	{
-		add_node_end(&head, (const char *) token);
+		add_node(&head, (const char *) token);
 		token = strtok(NULL, delim);
 	}
 

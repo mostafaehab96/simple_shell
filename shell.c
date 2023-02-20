@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-int main(int argc, char **argv, char **env)
+int main(void)
 {
 	char *input;
 	char *command;
@@ -16,12 +16,14 @@ int main(int argc, char **argv, char **env)
 	ssize_t read = 1;
 	int status;
 	pid_t pid;
-	char *token;
+	char *token = NULL;
 	char **args;
 
 
 	path = getenv("PATH");
+	path_list = NULL;
 	path_list = create(path);
+	print_list(path_list);
 
 	while(read)
 	{
@@ -30,27 +32,29 @@ int main(int argc, char **argv, char **env)
 		/* if EOF */
 		if (input == NULL || read == -1)
 			break;
-		/*
+		printf("%s\n", input);	
 		token = strtok(input, "\n");
 		while (token != NULL)
 		{
 			args = get_command(token);
-			if ((command = search(args[0], path_list)) != NULL)
+			if ((command = search(args[0], &path_list)) != NULL)
 			{
 				pid = fork();
 				if (pid == 0)
-					execve(command, args, env);
+					execve(command, args, NULL);
 				else
 					wait(&status);
 			}
 			else
 				perror("Command Not Found");
+
+			token = strtok(NULL, "\n");
 		}
-		*/
+		
 
 	}
 
-	/*free_list(path_list);*/
+	free_list(path_list);
 
 	write(1, "exit\n", 5);
 

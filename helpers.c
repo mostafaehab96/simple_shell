@@ -10,14 +10,16 @@
  * @head: the head of the list of directories
  * Return: the full path of the command if found or NULL if not
  */
-char *search(char *command, list_t *head)
+char *search(char *command, list_t **head)
 {
-	list_t *current = head;
+	list_t *current;
 	char *command_path;
+	int len = _strlen(command);
 
+	current = *head;
 	while (current != NULL)
 	{
-		command_path = (char *)malloc(_strlen(current->str) + _strlen(command) + 2);
+		command_path = (char *)malloc(current->len + len + 2);
 		_strcpy(command_path, current->str);
 		_strcat(command_path, "/");
 		_strcat(command_path, command);
