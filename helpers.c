@@ -16,6 +16,9 @@ char *search(char *command, list_t **head)
 	char *command_path;
 	int len = _strlen(command);
 
+	if (command[0] == '/')
+		return (command);
+
 	current = *head;
 	while (current != NULL)
 	{
@@ -68,13 +71,15 @@ void free_arr(char **arr)
 {
 	int i = 0;
 
+	if (arr == NULL)
+		return;
+
 	while (arr[i] != NULL)
 	{
 		free(arr[i]);
 		i++;
 	}
 
-	free(arr);
 }
 
 /**

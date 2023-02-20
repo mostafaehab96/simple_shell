@@ -17,13 +17,12 @@ int main(void)
 	int status;
 	pid_t pid;
 	char *token = NULL;
-	char **args;
+	char **args = NULL;
 
 
 	path = getenv("PATH");
 	path_list = NULL;
 	path_list = create(path);
-	print_list(path_list);
 
 	while(read)
 	{
@@ -32,7 +31,7 @@ int main(void)
 		/* if EOF */
 		if (input == NULL || read == -1)
 			break;
-		printf("%s\n", input);	
+	
 		token = strtok(input, "\n");
 		while (token != NULL)
 		{
@@ -49,6 +48,7 @@ int main(void)
 				perror("Command Not Found");
 
 			token = strtok(NULL, "\n");
+			free_arr(args);
 		}
 		
 
