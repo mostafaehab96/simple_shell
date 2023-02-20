@@ -8,7 +8,7 @@
 
 int main(void)
 {
-	char *input;
+	char *input = NULL;
 	char *command;
 	list_t *path_list;
 	char *path;
@@ -18,7 +18,7 @@ int main(void)
 	pid_t pid;
 	char *token = NULL;
 	char **args = NULL;
-
+	char *copy;
 
 	path = getenv("PATH");
 	path_list = NULL;
@@ -31,8 +31,10 @@ int main(void)
 		/* if EOF */
 		if (input == NULL || read == -1)
 			break;
-	
-		token = strtok(input, "\n");
+		
+
+		copy = _strdup(input);
+		token = strtok(copy, "\n");
 		while (token != NULL)
 		{
 			args = get_command(token);
@@ -49,13 +51,14 @@ int main(void)
 
 			token = strtok(NULL, "\n");
 			free_arr(args);
+			free(command);
 		}
-		
+		free(copy);
 
 	}
 
+	free(input);
 	free_list(path_list);
-
 	write(1, "exit\n", 5);
 
 	return (0);

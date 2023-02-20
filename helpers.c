@@ -17,7 +17,11 @@ char *search(char *command, list_t **head)
 	int len = _strlen(command);
 
 	if (command[0] == '/')
-		return (command);
+	{
+		if (access(command, F_OK) != -1)
+			return (command);
+		return (NULL);
+	}
 
 	current = *head;
 	while (current != NULL)
@@ -80,6 +84,8 @@ void free_arr(char **arr)
 		i++;
 	}
 
+	free(arr);
+
 }
 
 /**
@@ -93,7 +99,7 @@ char **get_command(char *input)
 {
 	int count = count_words(input);
 	char *token;
-	char **args = (char **) malloc(sizeof(char *) * (count + 2));
+	char **args = (char **) malloc(sizeof(char *) * (count + 1));
 	int i = 0;
 
 	token = strtok(input, " ");
