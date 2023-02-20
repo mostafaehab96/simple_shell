@@ -19,7 +19,7 @@ char *search(char *command, list_t **head)
 
 	if (command[0] == '/')
 	{
-		if (access(command, F_OK) != -1)
+		if (access(command, X_OK) != -1)
 			return (command);
 		return (NULL);
 	}
@@ -32,7 +32,7 @@ char *search(char *command, list_t **head)
 		_strcpy(command_path, current->str);
 		strcat(command_path, "/");
 		strcat(command_path, command);
-		if (access(command_path, F_OK) != -1)
+		if (access(command_path, X_OK) != -1)
 			return (command_path);
 		free(command_path);
 		current = current->next;

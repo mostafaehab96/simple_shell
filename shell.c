@@ -42,7 +42,10 @@ int main(void)
 			{
 				pid = fork();
 				if (pid == 0)
+				{
 					execve(command, args, NULL);
+					perror("exeve");
+				}
 				else
 					wait(&status);
 			}
@@ -50,8 +53,9 @@ int main(void)
 				perror("Command Not Found");
 
 			token = strtok(NULL, "\n");
+			if (command != NULL && *command != '/')
+				free(command);
 			free_arr(args);
-			free(command);
 		}
 		free(copy);
 
