@@ -58,3 +58,24 @@ void print_error(char *command, char *name)
 	free(error);
 }
 
+
+char *read_input(void)
+{
+	ssize_t read;
+	size_t len;
+	char *input = NULL;
+	
+	if (isatty(STDIN_FILENO))
+	{
+		write(1, "$ ", 2);
+	}
+	read = getline(&input, &len, stdin);
+
+	if (read == -1)
+	{
+		free(input);
+		return (NULL);
+	}
+
+	return (input);
+}

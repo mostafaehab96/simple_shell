@@ -18,6 +18,12 @@ typedef struct list_s
 	struct list_s *next;
 } list_t;
 
+typedef struct builtins
+{
+	char *command;
+	void (*func) (char **args);
+} builtin;
+
 list_t *create(char *s);
 list_t *add_node(list_t **head, const char *str);
 list_t *add_node_end(list_t **head, const char *str);
@@ -33,5 +39,7 @@ void free_arr(char **arr);
 char **get_command(char *input);
 int execute(char **args, char **argv, char **envp ,list_t **path_list);
 void print_error(char *command, char *name);
+void (*get_builtin(char *command)) (char **args);
+char *read_input(void);
 
 #endif
