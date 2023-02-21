@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdlib.h>
-
 
 
 /* _strlen function */
@@ -8,6 +6,12 @@ int _strlen(char *s)
 {
       int length = 0,
           i;
+
+      if (s == NULL)
+      {
+	      printf("NULL\n");
+	      return (0);
+      }
        for (i = 0; s[i] != '\0'; i++)
        {
             length++;
@@ -33,16 +37,25 @@ char *_strcpy(char *dest, char *src)
 char *_strcat(char *dest, char *src)
 {
 	int i = 0;
-	int j;
+	int j = 0;
 
-	while (dest[i])
+	while (1)
 	{
+		if (dest[i] == '\0')
+		{
+			while (src[j] != '\0')
+			{
+				dest[i] = src[j];
+				j++;
+				i++;
+			}
+			break;
+		}
 		i++;
 	}
-	for (j = 0; src[j]; j++)
-	{
-		dest[i++] = src[j];
-	}
+
+	dest[i] = '\0';
+
 	return (dest);
 }
 
@@ -62,4 +75,37 @@ char *_strdup(const char *s)
 	new[i] = '\0';
 
 	return (new);
+}
+
+/**
+ * _strcmp - compares two strings
+ * @s1: first string to compare
+ * @s2: second string to compare
+ *
+ * Return: 0 if two strings are the same
+ * int less than 1 if s1 comes before s2
+ * int bigger than 1 if s1 comes after s2
+ */
+
+
+int _strcmp(char *s1, char *s2)
+{
+	int i = 0;
+
+	while (s1[i] != '\0' || s2[i] != '\0')
+	{
+		if (s1[i] == '\0' && s2[i] != '\0')
+			return (-1);
+		if (s2[i] == '\0' && s1[i] != '\0')
+			return (1);
+
+		if (s1[i] != s2[i])
+		{
+			return (s1[i] - s2[i]);
+		}
+
+		i++;
+	}
+
+	return (0);
 }

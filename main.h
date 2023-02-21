@@ -2,6 +2,12 @@
 #define _MAIN_H_
 
 #include <stddef.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <string.h>
+#include <stdbool.h>
 
 /**
  * struct list_s - singly linked list
@@ -18,6 +24,12 @@ typedef struct list_s
 	struct list_s *next;
 } list_t;
 
+typedef struct builtins
+{
+	char *command;
+	void (*func) (char **args);
+} builtin;
+
 list_t *create(char *s);
 list_t *add_node(list_t **head, const char *str);
 list_t *add_node_end(list_t **head, const char *str);
@@ -28,5 +40,18 @@ char *_strcat(char *dest, char *src);
 char *search(char *command, list_t *head);
 char *_strdup(const char *s);
 size_t print_list(const list_t *h);
+char *search(char *command, list_t **head);
+char *_strdup(const char *s);
+int _strcmp(char *s1, char *s2);
+size_t print_list(const list_t *h);
+int count_words(char *s);
+void free_arr(char **arr);
+char **get_command(char *input);
+int execute(char **args, char **argv, char **envp ,list_t **path_list);
+void print_error(char *command, char *name);
+void (*get_builtin(char *command)) (char **args);
+char *read_input(void);
+void env_func(char **arg);
+void cd_func(char **arg);
 
 #endif
