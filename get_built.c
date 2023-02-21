@@ -1,5 +1,4 @@
 #include "main.h"
-#include <string.h>
 
 
 void (*get_builtin(char *command)) (char **args)
@@ -13,7 +12,7 @@ void (*get_builtin(char *command)) (char **args)
 	
 	for (i = 0; list[i].command != NULL; i++)
 	{
-		if (strcmp(list[i].command, command) == 0)
+		if (_strcmp(list[i].command, command) == 0)
 			return (list[i].func);
 	}
 
