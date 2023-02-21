@@ -27,8 +27,7 @@ int execute(char **args, char **argv, char **envp ,list_t **path_list)
 	}
 	else
 	{
-		perror(argv[0]);
-		perror("Not found");
+		print_error(args[0], argv[0]);
 	}
 
         if (command != NULL && args[0][0] != '/')
@@ -39,4 +38,23 @@ int execute(char **args, char **argv, char **envp ,list_t **path_list)
 
 }
 
+
+void print_error(char *command, char *name)
+{
+	int com_len = _strlen(command);
+	int name_len = _strlen(name);
+	char *error = malloc(sizeof(char) * com_len + name_len + 20);
+
+	if (error == NULL)
+		return;
+
+	_strcat(error, name);
+	_strcat(error, ": 1: ");
+	_strcat(error, command);
+	_strcat(error, ": not found\n");
+
+	write(2, error, _strlen(error));
+
+	free(error);
+}
 

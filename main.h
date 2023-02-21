@@ -32,5 +32,6 @@ int count_words(char *s);
 void free_arr(char **arr);
 char **get_command(char *input);
 int execute(char **args, char **argv, char **envp ,list_t **path_list);
+void print_error(char *command, char *name);
 
 #endif
