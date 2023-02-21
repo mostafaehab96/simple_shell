@@ -34,4 +34,14 @@ char **get_command(char *input);
 int execute(char **args, char **argv, char **envp ,list_t **path_list);
 void print_error(char *command, char *name);
 
+/**
+ * struct print - New typedef struct
+ * @format: data type
+ * @func: a pointer to a function
+ */
+typedef struct builtin
+{
+	char format;
+	int (*func)(va_list arg);
+} func_builtin;
 #endif
