@@ -3,7 +3,7 @@
 void exit_func(char **arg)
 {
 
-	if ((_strcmp(arg[0], "env") == 0) && (arg[1] == NULL))
+	if ((_strcmp(arg[0], "exit") == 0) && (arg[1] == NULL))
 		exit(0);
 }
 
