@@ -1,30 +1,28 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "main.h"
-#include <sys/wait.h>
-#include <string.h>
 
+/**
+ * main - a simple shell like program
+ * @argc: the arguments count
+ * @argv: the arguments of the program
+ * @envp: the enviroment variables
+ * Return: 0 on Success
+ */
 
 int main(int argc, char **argv, char **envp)
 {
 	char *input = NULL;
-	list_t *path_list;
-	char *path;
+	list_t *path_list = NULL;
+	char *path = getenv("PATH");
 	char *token = NULL;
 	char **args = NULL;
 	char *copy;
 	bool should_exit = 0;
 	int exit_status = 0;
 
-	path = getenv("PATH");
-	path_list = NULL;
 	path_list = create(path);
-
-	while(1)
+	while (1)
 	{
 		input = read_input();
-		/* if EOF */
 		if (input == NULL)
 			break;
 		copy = _strdup(input);
@@ -47,9 +45,7 @@ int main(int argc, char **argv, char **envp)
 		free(input);
 		if (should_exit)
 			break;
-
 	}
-
 	free_list(path_list);
 	if (should_exit)
 		exit(exit_status);
