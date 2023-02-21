@@ -1,13 +1,14 @@
 #include "main.h"
 
+extern char **environ;
 
 void env_func(char **arg)
 {
 
 	int i;
-	for (i = 0; str[i] != NULL; i++)
+	for (i = 0; environ[i] != NULL; i++)
 	{
-		printf("%s\\\\\\\\n", str[i]);
+		printf("%s\n", environ[i]);
 	}
 
 }
@@ -17,7 +18,7 @@ void cd_func(char **arg)
 	{
 		if (chdir(arg[1]) != 0)
 		{
-			printf("cd: %s: No such file or directory\\\\n", arg[1]);
+			printf("cd: %s: No such file or directory\n", arg[1]);
 		}
 	}
 }
