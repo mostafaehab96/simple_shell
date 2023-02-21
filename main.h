@@ -2,6 +2,11 @@
 #define _MAIN_H_
 
 #include <stddef.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <string.h>
 
 /**
  * struct list_s - singly linked list
@@ -33,6 +38,7 @@ char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 char *search(char *command, list_t **head);
 char *_strdup(const char *s);
+int _strcmp(char *s1, char *s2);
 size_t print_list(const list_t *h);
 int count_words(char *s);
 void free_arr(char **arr);
@@ -41,5 +47,8 @@ int execute(char **args, char **argv, char **envp ,list_t **path_list);
 void print_error(char *command, char *name);
 void (*get_builtin(char *command)) (char **args);
 char *read_input(void);
+void exit_func(char **arg);
+void env_func(char **arg);
+void cd_func(char **arg);
 
 #endif
