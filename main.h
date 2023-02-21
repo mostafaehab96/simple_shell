@@ -37,7 +37,6 @@ void free_list(list_t *head);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
-char *search(char *command, list_t *head);
 char *_strdup(const char *s);
 size_t print_list(const list_t *h);
 char *search(char *command, list_t **head);
