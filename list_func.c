@@ -102,6 +102,7 @@ list_t *create(char *s)
 	char *token;
 	const char *delim = ":";
 	list_t *head = NULL;
+
 	token = strtok(s, delim);
 	while (token != NULL)
 	{
