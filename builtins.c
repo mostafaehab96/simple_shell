@@ -5,16 +5,9 @@ void env_func(char **arg)
 {
 
 	int i;
-
-	if (_strcmp(arg[0], "env") == 0)
+	for (i = 0; str[i] != NULL; i++)
 	{
-		i = 0;
-
-		while (arg[i] != NULL)
-		{
-			printf("%s\n", arg[i]);
-			i++;
-		}
+		printf("%s\\\\\\\\n", str[i]);
 	}
 
 }
