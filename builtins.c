@@ -1,11 +1,5 @@
 #include "main.h"
 
-void exit_func(char **arg)
-{
-
-	if ((_strcmp(arg[0], "exit") == 0) && (arg[1] == NULL))
-		exit(0);
-}
 
 void env_func(char **arg)
 {
@@ -26,7 +20,7 @@ void env_func(char **arg)
 }
 void cd_func(char **arg)
 {
-	if ((arg[0] == "cd") && (arg[1] != NULL))
+	if ((_strcmp(arg[0], "cd") == 0) && (arg[1] != NULL))
 	{
 		if (chdir(arg[1]) != 0)
 		{

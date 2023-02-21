@@ -6,7 +6,7 @@ void (*get_builtin(char *command)) (char **args)
 	int i;
 	builtin list[] = {
 		{"env", env_func},
-		{"exit", exit_func},
+		{"cd", cd_func},
 		{NULL, NULL}
 	};
 	

@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <stdbool.h>
 
 /**
  * struct list_s - singly linked list
@@ -47,7 +48,6 @@ int execute(char **args, char **argv, char **envp ,list_t **path_list);
 void print_error(char *command, char *name);
 void (*get_builtin(char *command)) (char **args);
 char *read_input(void);
-void exit_func(char **arg);
 void env_func(char **arg);
 void cd_func(char **arg);
 

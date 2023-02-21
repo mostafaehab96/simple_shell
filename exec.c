@@ -1,9 +1,4 @@
 #include "main.h"
-#include <unistd.h>
-#include <sys/wait.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
 
 int execute(char **args, char **argv, char **envp ,list_t **path_list)
 {
@@ -11,6 +6,15 @@ int execute(char **args, char **argv, char **envp ,list_t **path_list)
 	int err = 0;
 	pid_t pid;
 	int status;
+	void (*builtin) (char **args);
+
+	builtin = get_builtin(args[0]);
+	if (builtin != NULL)
+	{
+		builtin(args);
+		return (0);
+	}
+
 
 	if ((command = search(args[0], path_list)) != NULL)
 	{
