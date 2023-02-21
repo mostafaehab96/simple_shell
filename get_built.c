@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * get_builtin - a function to get the correct command to execute
+ * @command: the input command
+ * @*args: arguments of the command
+ * Return: the right function or NULL
+ */
 
 void (*get_builtin(char *command)) (char **args)
 {
@@ -9,7 +15,7 @@ void (*get_builtin(char *command)) (char **args)
 		{"cd", cd_func},
 		{NULL, NULL}
 	};
-	
+
 	for (i = 0; list[i].command != NULL; i++)
 	{
 		if (_strcmp(list[i].command, command) == 0)
@@ -17,5 +23,4 @@ void (*get_builtin(char *command)) (char **args)
 	}
 
 	return (NULL);
-	
 }
