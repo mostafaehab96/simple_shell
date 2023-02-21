@@ -78,8 +78,6 @@ char *_strdup(const char *s)
 
 	return (new);
 }
-#include "main.h"
-
 /**
  * _strcmp - compares two strings.
  * @s1: first string
