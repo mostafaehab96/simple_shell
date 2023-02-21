@@ -1,30 +1,41 @@
 #include "main.h"
 
 
-/* _strlen function */
+/**
+ * _strlen - returns the length of a string
+ * @s: the string
+ * Return: length
+ */
+
 int _strlen(char *s)
 {
-      int length = 0,
-          i;
+	int length = 0,
+	    i;
 
-      if (s == NULL)
-      {
-	      printf("NULL\n");
-	      return (0);
-      }
-       for (i = 0; s[i] != '\0'; i++)
-       {
-            length++;
-       }
-       return (length);
+	if (s == NULL)
+	{
+		printf("NULL\n");
+		return (0);
+	}
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		length++;
+	}
+	return (length);
 }
 
-/* _strcpy function */
+/**
+ * *_strcpy - copies the string pointed to by src
+ * including the terminating null byte (\0)
+ * to the buffer pointed to by dest
+ * @dest: the return value
+ * @src: source
+ * Return:dest
+ */
 char *_strcpy(char *dest, char *src)
 {
 	int size1 = _strlen(src),
-      i;
-
+	    i;
 	for (i = 0; i < size1; i++)
 	{
 		dest[i] = src[i];
@@ -33,7 +44,12 @@ char *_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-/*_strcat function */
+/**
+ * *_strcat - concatenates two strings
+ * @dest: first string
+ * @src: second string
+ * Return: dest
+ */
 char *_strcat(char *dest, char *src)
 {
 	int i = 0;
@@ -59,7 +75,13 @@ char *_strcat(char *dest, char *src)
 	return (dest);
 }
 
-/*_strdup function */
+/**
+ * *_strdup -  a function that returns a pointer to
+ * a newly allocated space in memory,
+ * which contains a copy of the string given as a parameter.
+ * @s : pointer to the new str
+ * Return: NULL or a pointer to the duplicated string
+ */
 char *_strdup(const char *s)
 {
 	int len = _strlen((char *) s);
