@@ -1,12 +1,20 @@
 #include "main.h"
 
-int execute(char **args, char **argv, char **envp ,list_t **path_list)
+/**
+ * execute - a function to execute the input commands
+ * @args: the argument
+ * @argv: arguments array
+ * @envp: the path of a certain variables
+ * @path_list: list of all paths of the variables
+ * Return: 0
+ */
+int execute(char **args, char **argv, char **envp, list_t **path_list)
 {
-	char *command;
+	char *command = search(args[0], path_list);
 	int err = 0;
 	pid_t pid;
 	int status;
-	void (*builtin) (char **args);
+	void (*builtin)(char **args);
 
 	builtin = get_builtin(args[0]);
 	if (builtin != NULL)
@@ -16,7 +24,7 @@ int execute(char **args, char **argv, char **envp ,list_t **path_list)
 	}
 
 
-	if ((command = search(args[0], path_list)) != NULL)
+	if (command != NULL)
 	{
 		pid = fork();
 		if (pid == 0)
@@ -33,8 +41,7 @@ int execute(char **args, char **argv, char **envp ,list_t **path_list)
 	{
 		print_error(args[0], argv[0]);
 	}
-
-        if (command != NULL && args[0][0] != '/')
+	if ((command != NULL) && (args[0][0] != '/'))
 		free(command);
 	free_arr(args);
 
@@ -42,7 +49,12 @@ int execute(char **args, char **argv, char **envp ,list_t **path_list)
 
 }
 
-
+/**
+ * print_error - a function to print the error message
+ * @command: the input command
+ * @name: the name of the name of the command
+ * Return: Nothing
+ */
 void print_error(char *command, char *name)
 {
 	int com_len = _strlen(command);
@@ -62,13 +74,16 @@ void print_error(char *command, char *name)
 	free(error);
 }
 
-
+/**
+ * read_input - a function to read the input from a file
+ * Return: The input of the file or NULL
+ */
 char *read_input(void)
 {
 	ssize_t read;
 	size_t len;
 	char *input = NULL;
-	
+
 	if (isatty(STDIN_FILENO))
 	{
 		write(1, "$ ", 2);
