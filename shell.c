@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-int main(void)
+int main(int argc, char **argv, char **envp)
 {
 	char *input = NULL;
 	char *command;
@@ -31,31 +31,13 @@ int main(void)
 		/* if EOF */
 		if (input == NULL || read == -1)
 			break;
-		
-
 		copy = _strdup(input);
 		token = strtok(copy, "\n");
 		while (token != NULL)
 		{
 			args = get_command(token);
-			if ((command = search(args[0], &path_list)) != NULL)
-			{
-				pid = fork();
-				if (pid == 0)
-				{
-					execve(command, args, NULL);
-					perror("exeve");
-				}
-				else
-					wait(&status);
-			}
-			else
-				perror("Command Not Found");
-
+			execute(args, argv, envp, &path_list);
 			token = strtok(NULL, "\n");
-			if (command != NULL && *command != '/')
-				free(command);
-			free_arr(args);
 		}
 		free(copy);
 
@@ -64,6 +46,5 @@ int main(void)
 	free(input);
 	free_list(path_list);
 	write(1, "exit\n", 5);
-
 	return (0);
 }

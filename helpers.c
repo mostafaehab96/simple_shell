@@ -23,6 +23,8 @@ char *search(char *command, list_t **head)
 			return (command);
 		return (NULL);
 	}
+	else if (command[0] == '.')
+		return (NULL);
 
 	current = *head;
 	while (current != NULL)
