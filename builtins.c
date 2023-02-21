@@ -11,22 +11,15 @@ void env_func(char **arg)
 {
 
 	int i;
-
-	if (_strcmp(arg[0], "env") == 0)
+	for (i = 0; str[i] != NULL; i++)
 	{
-		i = 0;
-
-		while (arg[i] != NULL)
-		{
-			printf("%s\n", arg[i]);
-			i++;
-		}
+		printf("%s\\\\\\\\n", str[i]);
 	}
 
 }
 void cd_func(char **arg)
 {
-	if ((arg[0] == "cd") && (arg[1] != NULL))
+	if ((_strcmp(arg[0], "cd") == 0) && (arg[1] != NULL))
 	{
 		if (chdir(arg[1]) != 0)
 		{
