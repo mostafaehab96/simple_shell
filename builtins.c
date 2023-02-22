@@ -9,7 +9,9 @@ void env_func(char **arg)
 {
 	int i;
 
-	if (strcmp(arg[0], "env") == 0)
+	if (arg[1] != NULL)
+		fprintf(stderr, "env: %s: No such file or directory\n", arg[1]);
+	else if (strcmp(arg[0], "env") == 0)
 	{
 		for (i = 0; environ[i] != NULL; i++)
 		{
