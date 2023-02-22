@@ -88,21 +88,20 @@ void _setenv(char **args)
 	char *variable = args[1];
 	char *value;
 	int result = 0;
-	char error[] = "Error setting the variable\n";
 
 	if (variable != NULL)
 	{
 		value = args[2];
 		if (value == NULL)
-			write(2, error, _strlen(error));
+			fprintf(stderr, "Error setting the variable\n");
 		else
 			result = setenv(variable, value, 1);
 	}
 	else
-		write(2, error, _strlen(error));
+		fprintf(stderr, "Error setting the variable\n");
 
 	if (result == -1)
-		write(2, error, _strlen(error));
+		fprintf(stderr, "Error setting the variable\n");
 	free_arr(args);
 }
 
