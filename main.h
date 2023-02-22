@@ -51,7 +51,8 @@ size_t print_list(const list_t *h);
 int count_words(char *s);
 void free_arr(char **arr);
 char **get_command(char *input);
-int execute(char **args, char **argv, char **envp, list_t **path_list, int cmd_count);
+int execute(char **args, char **argv, char **envp,
+		list_t **path_list, int cmd_count);
 void print_error(char *command, char *name);
 void (*get_builtin(char *command)) (char **args);
 char *read_input(void);
