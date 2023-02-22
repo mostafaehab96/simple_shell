@@ -24,11 +24,15 @@ typedef struct list_s
 	unsigned int len;
 	struct list_s *next;
 } list_t;
-
+/**
+ * struct builtins - New typedef struct
+ * @command: the input command
+ * @func: a poiner to a function
+ */
 typedef struct builtins
 {
 	char *command;
-	void (*func) (char **args);
+	void (*func)(char **args);
 } builtin;
 
 list_t *create(char *s);
@@ -47,7 +51,7 @@ size_t print_list(const list_t *h);
 int count_words(char *s);
 void free_arr(char **arr);
 char **get_command(char *input);
-int execute(char **args, char **argv, char **envp ,list_t **path_list);
+int execute(char **args, char **argv, char **envp, list_t **path_list);
 void print_error(char *command, char *name);
 void (*get_builtin(char *command)) (char **args);
 char *read_input(void);
