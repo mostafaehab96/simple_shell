@@ -24,20 +24,44 @@ void env_func(char **arg)
 }
 /**
  * cd_func - a function to stimulate the cd command
- * @arg: arguments
+ * @args: arguments
  * Return: Nothing
  */
-void cd_func(char **arg)
+void cd_func(char **args)
 {
-	if ((_strcmp(arg[0], "cd") == 0) && (arg[1] != NULL))
+	char *dir = args[1];
+	char *home = getenv("HOME");
+	char *old = getenv("OLDPWD");
+	char current[256];
+
+	getcwd(current, sizeof(current));
+	if (dir == NULL)
 	{
-		if (chdir(arg[1]) != 0)
+		setenv("OLDPWD", current, 1);
+		chdir(home);
+		setenv("PWD", home, 1);
+	}
+	else if (_strcmp(dir, "-") == 0)
+	{
+		chdir(old);
+		setenv("PWD", old, 1);
+		setenv("OLDPWD", current, 1);
+		getcwd(current, sizeof(current));
+		printf("%s\n", current);
+	}
+	else
+	{
+		if (chdir(dir) != 0)
+			fprintf(stderr, "sh: 1: cd: can't cd to %s\n", dir);
+		else
 		{
-			printf("cd: %s: No such file or directory\n", arg[1]);
+			setenv("OLDPWD", current, 1);
+			setenv("PWD", dir, 1);
 		}
 	}
 
-	free_arr(arg);
+
+	free_arr(args);
 }
 
 
