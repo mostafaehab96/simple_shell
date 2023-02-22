@@ -6,9 +6,11 @@
  * @argv: arguments array
  * @envp: the path of a certain variables
  * @path_list: list of all paths of the variables
+ * @cmd_count: the commands count used in shell for printing errors
  * Return: 0
  */
-int execute(char **args, char **argv, char **envp, list_t **path_list)
+int execute(char **args, char **argv, char **envp,
+		list_t **path_list, int cmd_count)
 {
 	char *command = search(args[0], path_list);
 	int err = 0;
@@ -40,7 +42,7 @@ int execute(char **args, char **argv, char **envp, list_t **path_list)
 	}
 	else
 	{
-		fprintf(stderr, "%s: 1: %s: not found\n", argv[0], args[0]);
+		fprintf(stderr, "%s: %i: %s: not found\n", argv[0], cmd_count, args[0]);
 	}
 	if ((command != NULL) && (args[0][0] != '/'))
 		free(command);

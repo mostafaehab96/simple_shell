@@ -15,7 +15,7 @@ int main(int argc, char **argv, char **envp)
 	list_t *path_list;
 	char *token = NULL, *copy;
 	char **args = NULL;
-	int should_exit = 0, exit_status = 0;
+	int should_exit = 0, exit_status = 0, cmd_count = 0;
 
 	check_argc(argc, argv);
 	path_list = create(path);
@@ -29,14 +29,15 @@ int main(int argc, char **argv, char **envp)
 		token = strtok(copy, "\n");
 		while (token != NULL)
 		{
+			cmd_count++;
 			args = get_command(token);
-			should_exit = check_exit(args, argv, &exit_status);
+			should_exit = check_exit(args, argv, &exit_status, cmd_count);
 			if (should_exit)
 			{
 				free_arr(args);
 				break;
 			}
-			execute(args, argv, envp, &path_list);
+			execute(args, argv, envp, &path_list, cmd_count);
 			token = strtok(NULL, "\n");
 		}
 		free(copy);

@@ -44,9 +44,10 @@ void cd_func(char **arg)
  * @args: the arguments passed as input
  * @argv: the arguments of main (name of the program)
  * @exit_status: the exit status to be changed
+ * @cmd_count: the commands count used in shell for printing errors
  * Return: 1 if should exit or 0 if not
  */
-int check_exit(char **args, char **argv, int *exit_status)
+int check_exit(char **args, char **argv, int *exit_status, int cmd_count)
 {
 	char *first = args[0];
 	char *second = args[1];
@@ -61,7 +62,8 @@ int check_exit(char **args, char **argv, int *exit_status)
 			{
 				if (second[i] < '0' || second[i] > '9')
 				{
-					fprintf(stderr, "%s: 1: exit: Illegal number: %s\n", argv[0], second);
+					fprintf(stderr, "%s: %i: exit: Illegal number: %s\n",
+						argv[0], cmd_count, second);
 					*exit_status = -1;
 					return (1);
 				}
