@@ -17,6 +17,8 @@ void env_func(char **arg)
 		}
 	}
 
+	free_arr(arg);
+
 }
 /**
  * cd_func - a function to stimulate the cd command
@@ -32,6 +34,8 @@ void cd_func(char **arg)
 			printf("cd: %s: No such file or directory\n", arg[1]);
 		}
 	}
+
+	free_arr(arg);
 }
 
 

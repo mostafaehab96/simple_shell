@@ -20,6 +20,7 @@ int execute(char **args, char **argv, char **envp, list_t **path_list)
 	if (builtin != NULL)
 	{
 		builtin(args);
+		free(command);
 		return (0);
 	}
 
@@ -39,7 +40,7 @@ int execute(char **args, char **argv, char **envp, list_t **path_list)
 	}
 	else
 	{
-		print_error(args[0], argv[0]);
+		fprintf(stderr, "%s: 1: %s: not found\n", argv[0], args[0]);
 	}
 	if ((command != NULL) && (args[0][0] != '/'))
 		free(command);
@@ -47,31 +48,6 @@ int execute(char **args, char **argv, char **envp, list_t **path_list)
 
 	return (err);
 
-}
-
-/**
- * print_error - a function to print the error message
- * @command: the input command
- * @name: the name of the name of the command
- * Return: Nothing
- */
-void print_error(char *command, char *name)
-{
-	int com_len = _strlen(command);
-	int name_len = _strlen(name);
-	char *error = malloc(sizeof(char) * com_len + name_len + 20);
-
-	if (error == NULL)
-		return;
-
-	_strcat(error, name);
-	_strcat(error, ": 1: ");
-	_strcat(error, command);
-	_strcat(error, ": not found\n");
-
-	write(2, error, _strlen(error));
-
-	free(error);
 }
 
 /**
