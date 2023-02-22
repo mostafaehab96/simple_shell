@@ -98,3 +98,19 @@ char *read_input(void)
 
 	return (input);
 }
+
+/**
+ * check_argc - checking the argc count and exit if not one
+ * @argc: the arguments count
+ * @argv: the arguments of the program
+ * Return: 0 if not exit
+ */
+int check_argc(int argc, char **argv)
+{
+	if (argc != 1)
+	{
+		fprintf(stderr, "%s: 0: Can't open %s\n", argv[0], argv[1]);
+		exit(127);
+	}
+	return (0);
+}

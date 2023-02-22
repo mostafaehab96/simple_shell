@@ -11,16 +11,16 @@
 int main(int argc, char **argv, char **envp)
 {
 	char *input = NULL;
-	list_t *path_list = NULL;
 	char *path = getenv("PATH");
+	int checking_argc = check_argc(argc, argv);
+	list_t *path_list = create(path);
 	char *token = NULL;
 	char **args = NULL;
 	char *copy;
 	bool should_exit = 0;
 	int exit_status = 0;
 
-	path_list = create(path);
-	while (1)
+	while (checking_argc == 0)
 	{
 		input = read_input();
 		if (input == NULL)
@@ -30,11 +30,9 @@ int main(int argc, char **argv, char **envp)
 		while (token != NULL)
 		{
 			args = get_command(token);
-			if (_strcmp(args[0], "exit") == 0)
+			should_exit = check_exit(args, argv, &exit_status);
+			if (should_exit)
 			{
-				should_exit = 1;
-				if (args[1] != NULL)
-					exit_status = atoi(args[1]);
 				free_arr(args);
 				break;
 			}
@@ -43,7 +41,7 @@ int main(int argc, char **argv, char **envp)
 		}
 		free(copy);
 		free(input);
-		if (should_exit)
+		if (should_exit && exit_status != -1)
 			break;
 	}
 	free_list(path_list);

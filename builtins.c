@@ -34,3 +34,39 @@ void cd_func(char **arg)
 	}
 }
 
+
+/**
+ * check_exit - checks for exit command and exit status
+ * @args: the arguments passed as input
+ * @argv: the arguments of main (name of the program)
+ * @exit_status: the exit status to be changed
+ * Return: 1 if should exit or 0 if not
+ */
+int check_exit(char **args, char **argv, int *exit_status)
+{
+	char *first = args[0];
+	char *second = args[1];
+	int i;
+
+	*exit_status = 0;
+	if (_strcmp(first, "exit") == 0)
+	{
+		if (second != NULL)
+		{
+			for (i = 0; second[i] != '\0'; i++)
+			{
+				if (second[i] < '0' || second[i] > '9')
+				{
+					fprintf(stderr, "%s: 1: exit: Illegal number: %s\n", argv[0], second);
+					*exit_status = -1;
+					return (1);
+				}
+			}
+			*exit_status = atoi(second);
+		}
+
+		return (1);
+	}
+
+	return (0);
+}
