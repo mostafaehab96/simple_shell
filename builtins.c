@@ -9,9 +9,12 @@ void env_func(char **arg)
 {
 	int i;
 
-	for (i = 0; environ[i] != NULL; i++)
+	if (strcmp(arg[0], "env") == 0)
 	{
-		printf("%s\n", environ[i]);
+		for (i = 0; environ[i] != NULL; i++)
+		{
+			printf("%s\n", environ[i]);
+		}
 	}
 
 }
