@@ -86,13 +86,23 @@ int check_exit(char **args, char **argv, int *exit_status, int cmd_count)
 void _setenv(char **args)
 {
 	char *variable = args[1];
-	char *value = args[2];
-	int result;
+	char *value;
+	int result = 0;
+	char error[] = "Error setting the variable\n";
 
-	result = setenv(variable, value, 1);
+	if (variable != NULL)
+	{
+		value = args[2];
+		if (value == NULL)
+			write(2, error, _strlen(error));
+		else
+			result = setenv(variable, value, 1);
+	}
+	else
+		write(2, error, _strlen(error));
+
 	if (result == -1)
-		fprintf(stderr, "Error setting the variable\n");
-
+		write(2, error, _strlen(error));
 	free_arr(args);
 }
 
