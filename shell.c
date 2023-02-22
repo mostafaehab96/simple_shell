@@ -20,7 +20,6 @@ int main(int argc, char **argv, char **envp)
 	check_argc(argc, argv);
 	path = _strdup(path);
 	path_list = create(path);
-
 	while (1)
 	{
 		input = read_input();
