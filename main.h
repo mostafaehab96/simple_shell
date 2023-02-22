@@ -60,5 +60,7 @@ void env_func(char **arg);
 void cd_func(char **arg);
 int check_argc(int argc, char **argv);
 int check_exit(char **args, char **argv, int *exit_status, int cmd_count);
+void _setenv(char **args);
+void _unsetenv(char **args);
 
 #endif

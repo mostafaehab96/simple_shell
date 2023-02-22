@@ -78,3 +78,37 @@ int check_exit(char **args, char **argv, int *exit_status, int cmd_count)
 
 	return (0);
 }
+
+/**
+ * _setenv - sets an environment variable
+ * @args: the array of arguments passed as input
+ */
+void _setenv(char **args)
+{
+	char *variable = args[1];
+	char *value = args[2];
+	int result;
+
+	result = setenv(variable, value, 1);
+	if (result == -1)
+		fprintf(stderr, "Error setting the variable\n");
+
+	free_arr(args);
+}
+
+/**
+ * _unsetenv - deletes an environment variable
+ * @args: the array of arguments passed as input
+ */
+void _unsetenv(char **args)
+{
+	char *variable = args[1];
+	int result;
+
+	result = unsetenv(variable);
+	if (result == -1)
+		fprintf(stderr, "Error unsetting the variable\n");
+
+	free_arr(args);
+}
+

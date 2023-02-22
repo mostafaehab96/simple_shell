@@ -13,6 +13,8 @@ void (*get_builtin(char *command)) (char **args)
 	builtin list[] = {
 		{"env", env_func},
 		{"cd", cd_func},
+		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},
 		{NULL, NULL}
 	};
 
