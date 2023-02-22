@@ -18,6 +18,7 @@ int main(int argc, char **argv, char **envp)
 	int should_exit = 0, exit_status = 0, cmd_count = 0;
 
 	check_argc(argc, argv);
+	path = _strdup(path);
 	path_list = create(path);
 
 	while (1)
@@ -46,6 +47,7 @@ int main(int argc, char **argv, char **envp)
 			break;
 	}
 	free_list(path_list);
+	free(path);
 	if (should_exit)
 		exit(exit_status);
 	return (0);
