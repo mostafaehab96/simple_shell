@@ -12,15 +12,15 @@ int main(int argc, char **argv, char **envp)
 {
 	char *input = NULL;
 	char *path = getenv("PATH");
-	int checking_argc = check_argc(argc, argv);
-	list_t *path_list = create(path);
-	char *token = NULL;
+	list_t *path_list;
+	char *token = NULL, *copy;
 	char **args = NULL;
-	char *copy;
-	bool should_exit = 0;
-	int exit_status = 0;
+	int should_exit = 0, exit_status = 0;
 
-	while (checking_argc == 0)
+	check_argc(argc, argv);
+	path_list = create(path);
+
+	while (1)
 	{
 		input = read_input();
 		if (input == NULL)
