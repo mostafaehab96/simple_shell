@@ -1,5 +1,9 @@
 #include "main.h"
 
+/*These are global variable to be accessed through other files for exit status*/
+int exit_status = 0;
+int cmd_count = 0;
+
 /**
  * main - a simple shell like program
  * @argc: the arguments count
@@ -15,7 +19,7 @@ int main(int argc, char **argv, char **envp)
 	list_t *path_list;
 	char *token = NULL, *copy;
 	char **args = NULL;
-	int should_exit = 0, exit_status = 0, cmd_count = 0;
+	int should_exit = 0;
 
 	check_argc(argc, argv);
 	path = _strdup(path);
@@ -31,13 +35,13 @@ int main(int argc, char **argv, char **envp)
 		{
 			cmd_count++;
 			args = get_command(token);
-			should_exit = check_exit(args, argv, &exit_status, cmd_count);
+			should_exit = check_exit(args, argv);
 			if (should_exit)
 			{
 				free_arr(args);
 				break;
 			}
-			execute(args, argv, envp, &path_list, cmd_count);
+			execute(args, argv, envp, &path_list);
 			token = strtok(NULL, "\n");
 		}
 		free(copy);

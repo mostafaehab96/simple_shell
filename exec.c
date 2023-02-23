@@ -1,5 +1,8 @@
 #include "main.h"
 
+extern int cmd_count;
+extern int exit_status;
+
 /**
  * execute - a function to execute the input commands
  * @args: the argument
@@ -9,8 +12,7 @@
  * @cmd_count: the commands count used in shell for printing errors
  * Return: 0
  */
-int execute(char **args, char **argv, char **envp,
-		list_t **path_list, int cmd_count)
+int execute(char **args, char **argv, char **envp, list_t **path_list)
 {
 	char *command = search(args[0], path_list);
 	int err = 0;

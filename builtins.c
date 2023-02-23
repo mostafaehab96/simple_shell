@@ -1,5 +1,8 @@
 #include "main.h"
 
+extern int cmd_count;
+extern int exit_status;
+
 /**
  * env_func - a function to stimulate the env command
  * @arg: arguments
@@ -52,7 +55,7 @@ void cd_func(char **args)
 	else
 	{
 		if (chdir(dir) != 0)
-			fprintf(stderr, "sh: 1: cd: can't cd to %s\n", dir);
+			fprintf(stderr, "sh: %i: cd: can't cd to %s\n", cmd_count, dir);
 		else
 		{
 			setenv("OLDPWD", current, 1);
@@ -73,13 +76,13 @@ void cd_func(char **args)
  * @cmd_count: the commands count used in shell for printing errors
  * Return: 1 if should exit or 0 if not
  */
-int check_exit(char **args, char **argv, int *exit_status, int cmd_count)
+int check_exit(char **args, char **argv)
 {
 	char *first = args[0];
 	char *second = args[1];
 	int i;
 
-	*exit_status = 0;
+	exit_status = 0;
 	if (_strcmp(first, "exit") == 0)
 	{
 		if (second != NULL)
@@ -90,11 +93,11 @@ int check_exit(char **args, char **argv, int *exit_status, int cmd_count)
 				{
 					fprintf(stderr, "%s: %i: exit: Illegal number: %s\n",
 						argv[0], cmd_count, second);
-					*exit_status = -1;
+					exit_status = -1;
 					return (1);
 				}
 			}
-			*exit_status = atoi(second);
+			exit_status = atoi(second);
 		}
 
 		return (1);
