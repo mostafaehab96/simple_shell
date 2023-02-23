@@ -35,6 +35,10 @@ void cd_func(char **args)
 	char current[256];
 
 	getcwd(current, sizeof(current));
+	if (home == NULL)
+		home = current;
+	if (old == NULL)
+		old = current;
 	if (dir == NULL)
 	{
 		setenv("OLDPWD", current, 1);
