@@ -1,6 +1,7 @@
 #include "main.h"
 
-/*These are global variable to be accessed through other files for exit status*/
+/*These are global variable to be*/
+/*accessed through other files for exit status*/
 int exit_status = 0;
 int cmd_count = 0;
 
