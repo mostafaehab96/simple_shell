@@ -81,7 +81,6 @@ int check_exit(char **args, char **argv)
 		return (0);
 	first = args[0];
 	second = args[1];
-	exit_status = 0;
 	if (_strcmp(first, "exit") == 0)
 	{
 		if (second != NULL)
@@ -92,8 +91,8 @@ int check_exit(char **args, char **argv)
 				{
 					fprintf(stderr, "%s: %i: exit: Illegal number: %s\n",
 						argv[0], cmd_count, second);
-					exit_status = -1;
-					return (1);
+					exit_status = 2;
+					return (-1);
 				}
 			}
 			exit_status = atoi(second);

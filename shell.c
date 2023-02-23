@@ -34,7 +34,7 @@ int main(int argc, char **argv, char **envp)
 			cmd_count++;
 			args = get_command(token);
 			should_exit = check_exit(args, argv);
-			if (should_exit)
+			if (should_exit || should_exit == -1)
 			{
 				free_arr(args);
 				break;
@@ -44,7 +44,7 @@ int main(int argc, char **argv, char **envp)
 		}
 		free(copy);
 		free(input);
-		if (should_exit && exit_status != -1)
+		if (should_exit == 1)
 			break;
 	}
 	free_list(path_list);

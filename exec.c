@@ -36,10 +36,11 @@ void execute(char **args, char **argv, char **envp, list_t **path_list)
 			perror("exeve");
 			exit(1);
 		}
-		else if (pid == -1)
-			perror("Pid error");
 		else
+		{
 			wait(&status);
+			exit_status = WIFEXITED(status) ? WEXITSTATUS(status) : 0;
+		}
 	}
 	else
 	{
