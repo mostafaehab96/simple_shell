@@ -50,7 +50,6 @@ void execute(char **args, char **argv, char **envp, list_t **path_list)
 	if ((command != NULL) && (f_letter != '/') && (f_letter != '.'))
 		free(command);
 	free_arr(args);
-	return;
 }
 
 /**
