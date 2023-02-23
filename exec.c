@@ -1,15 +1,11 @@
 #include "main.h"
 
-extern int cmd_count;
-extern int exit_status;
-
 /**
  * execute - a function to execute the input commands
  * @args: the argument
  * @argv: arguments array
  * @envp: the path of a certain variables
  * @path_list: list of all paths of the variables
- * @cmd_count: the commands count used in shell for printing errors
  * Return: 0
  */
 void execute(char **args, char **argv, char **envp, list_t **path_list)
@@ -50,15 +46,11 @@ void execute(char **args, char **argv, char **envp, list_t **path_list)
 			wait(&status);
 	}
 	else
-	{
 		fprintf(stderr, "%s: %i: %s: not found\n", argv[0], cmd_count, args[0]);
-	}
 	if ((command != NULL) && (f_letter != '/') && (f_letter != '.'))
 		free(command);
 	free_arr(args);
-
 	return;
-
 }
 
 /**
