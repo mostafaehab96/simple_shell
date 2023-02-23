@@ -84,9 +84,15 @@ char *_strcat(char *dest, char *src)
  */
 char *_strdup(const char *s)
 {
-	int len = _strlen((char *) s);
-	char *new = malloc(sizeof(char) * len + 1);
+	int len;
+	char *new;
 	int i;
+
+	if (s == NULL)
+		return (NULL);
+
+	len = _strlen((char *) s);
+	new = malloc(sizeof(char) * len + 1);
 
 	if (new == NULL)
 		return (NULL);

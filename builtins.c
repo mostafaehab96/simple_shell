@@ -1,7 +1,5 @@
 #include "main.h"
 
-extern int cmd_count;
-extern int exit_status;
 
 /**
  * env_func - a function to stimulate the env command
@@ -72,8 +70,6 @@ void cd_func(char **args)
  * check_exit - checks for exit command and exit status
  * @args: the arguments passed as input
  * @argv: the arguments of main (name of the program)
- * @exit_status: the exit status to be changed
- * @cmd_count: the commands count used in shell for printing errors
  * Return: 1 if should exit or 0 if not
  */
 int check_exit(char **args, char **argv)

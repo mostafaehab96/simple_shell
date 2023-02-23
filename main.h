@@ -10,6 +10,9 @@
 #include <stdbool.h>
 
 extern char **environ;
+extern int cmd_count;
+extern int exit_status;
+
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)

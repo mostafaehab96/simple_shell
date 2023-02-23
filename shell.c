@@ -1,6 +1,5 @@
 #include "main.h"
 
-/*These are global variable to be accessed through other files for exit status*/
 int exit_status = 0;
 int cmd_count = 0;
 
@@ -14,13 +13,13 @@ int cmd_count = 0;
 
 int main(int argc, char **argv, char **envp)
 {
-	char *input = NULL;
-	char *path = getenv("PATH");
+	char *input = NULL, *path = getenv("PATH");
 	list_t *path_list;
 	char *token = NULL, *copy;
 	char **args = NULL;
 	int should_exit = 0;
 
+	exit_status = 0, cmd_count = 0;
 	check_argc(argc, argv);
 	path = _strdup(path);
 	path_list = create(path);
@@ -51,7 +50,7 @@ int main(int argc, char **argv, char **envp)
 	}
 	free_list(path_list);
 	free(path);
-	if (should_exit)
+	if (should_exit || exit_status != 0)
 		exit(exit_status);
 	return (0);
 }
