@@ -19,7 +19,6 @@ int main(int argc, char **argv, char **envp)
 	char **args = NULL;
 	int should_exit = 0;
 
-	exit_status = 0, cmd_count = 0;
 	check_argc(argc, argv);
 	path = _strdup(path);
 	path_list = create(path);

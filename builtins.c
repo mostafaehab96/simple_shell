@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 /**
  * env_func - a function to stimulate the env command
  * @arg: arguments
