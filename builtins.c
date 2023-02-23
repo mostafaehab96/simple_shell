@@ -56,7 +56,7 @@ void cd_func(char **args)
 	else
 	{
 		if (chdir(dir) != 0)
-			fprintf(stderr, "sh: %i: cd: can't cd to %s\n", cmd_count, dir);
+			fprintf(stderr, "./hsh: %i: cd: can't cd to %s\n", cmd_count, dir);
 		else
 		{
 			setenv("OLDPWD", current, 1);
