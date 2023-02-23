@@ -12,20 +12,26 @@ extern int exit_status;
  * @cmd_count: the commands count used in shell for printing errors
  * Return: 0
  */
-int execute(char **args, char **argv, char **envp, list_t **path_list)
+void execute(char **args, char **argv, char **envp, list_t **path_list)
 {
-	char *command = search(args[0], path_list);
-	int err = 0;
+	char *command;
 	pid_t pid;
 	int status;
 	void (*builtin)(char **args);
+	char f_letter;
+
+	if (args == NULL)
+		return;
+
+	command = search(args[0], path_list);
+	f_letter = args[0][0];
 
 	builtin = get_builtin(args[0]);
 	if (builtin != NULL)
 	{
 		builtin(args);
 		free(command);
-		return (0);
+		return;
 	}
 
 
@@ -34,8 +40,9 @@ int execute(char **args, char **argv, char **envp, list_t **path_list)
 		pid = fork();
 		if (pid == 0)
 		{
-			err = execve(command, args, envp);
+			execve(command, args, envp);
 			perror("exeve");
+			exit(1);
 		}
 		else if (pid == -1)
 			perror("Pid error");
@@ -46,11 +53,11 @@ int execute(char **args, char **argv, char **envp, list_t **path_list)
 	{
 		fprintf(stderr, "%s: %i: %s: not found\n", argv[0], cmd_count, args[0]);
 	}
-	if ((command != NULL) && (args[0][0] != '/'))
+	if ((command != NULL) && (f_letter != '/') && (f_letter != '.'))
 		free(command);
 	free_arr(args);
 
-	return (err);
+	return;
 
 }
 

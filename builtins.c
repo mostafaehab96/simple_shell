@@ -78,10 +78,14 @@ void cd_func(char **args)
  */
 int check_exit(char **args, char **argv)
 {
-	char *first = args[0];
-	char *second = args[1];
+	char *first;
+	char *second;
 	int i;
 
+	if (args == NULL)
+		return (0);
+	first = args[0];
+	second = args[1];
 	exit_status = 0;
 	if (_strcmp(first, "exit") == 0)
 	{
