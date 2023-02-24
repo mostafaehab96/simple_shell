@@ -64,5 +64,7 @@ int check_argc(int argc, char **argv);
 int check_exit(char **args, char **argv);
 void _setenv(char **args);
 void _unsetenv(char **args);
+char **tokenize(char *str, const char *delim);
+char **tokenize2(char **arr, const char *delim);
 
 #endif
