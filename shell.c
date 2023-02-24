@@ -15,8 +15,9 @@ int main(int argc, char **argv, char **envp)
 {
 	char *input = NULL, *path = getenv("PATH");
 	list_t *path_list;
-	char **args = NULL, **lines, **commands;
-	int should_exit = 0, i;
+	char *token = NULL, *copy;
+	char **args = NULL;
+	int should_exit = 0;
 
 	check_argc(argc, argv);
 	path = _strdup(path);
@@ -26,23 +27,23 @@ int main(int argc, char **argv, char **envp)
 		input = read_input();
 		if (input == NULL)
 			break;
-		lines = tokenize(input, "\n");
-		commands = tokenize2(lines, ";");
-		for (i = 0; commands[i] != NULL; i++)
+		copy = _strdup(input);
+		token = strtok(copy, "\n");
+		while (token != NULL)
 		{
-			args = get_command(commands[i]);
+			cmd_count++;
+			args = get_command(token);
 			should_exit = check_exit(args, argv);
-			if (should_exit == 1 || should_exit == -1)
+			if (should_exit || should_exit == -1)
 			{
 				free_arr(args);
-				continue;
+				break;
 			}
 			execute(args, argv, envp, &path_list);
+			token = strtok(NULL, "\n");
 		}
-		cmd_count += i;
+		free(copy);
 		free(input);
-		free_arr(lines);
-		free_arr(commands);
 		if (should_exit == 1)
 			break;
 	}
