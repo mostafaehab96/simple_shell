@@ -27,7 +27,7 @@ ___
 | [helpers.c](./helpers.c) | File containing functions to help with PATH and arguments handling |
 | [builtins.c](./builtins.c) | File containing buitins like cd, env etc... |
 | [exec.c](./exec.c) | File containing helper functions that deals with reading input, excuting commands and checking main arguments |
-| [list_func.c](./list_funct.c) | File containing functions that deals with linked list functions |
+| [list_func.c](./list_func.c) | File containing functions that deals with linked list functions |
 | [tokenize.c](./tokenize.c) | File containing functions that deals with string tokenization of strings |
 ___
 ## How to compile and run
@@ -42,5 +42,5 @@ ___
 * Doesn't handle the command separation with `;`
 ___
 ## Authors
-* **Mostafa Ehab** - [mostafaehab96](@mostafaehab)
-*  **Iman Hamza** - [Imanhamza](@Imanhamza)
+* **Mostafa Ehab** - [mostafaehab96](github.com/mostafaehab)
+*  **Iman Hamza** - [Imanhamza](github.com/Imanhamza)
