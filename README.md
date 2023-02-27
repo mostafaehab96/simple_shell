@@ -42,5 +42,5 @@ ___
 * Doesn't handle the command separation with `;`
 ___
 ## Authors
-* **Mostafa Ehab** - [mostafaehab96](github.com/mostafaehab)
-*  **Iman Hamza** - [Imanhamza](github.com/Imanhamza)
+* **Mostafa Ehab** - [mostafaehab96](https://github.com/mostafaehab96)
+*  **Iman Hamza** - [Imanhamza](https://github.com/Imanhamza)
