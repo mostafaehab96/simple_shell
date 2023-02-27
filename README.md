@@ -29,5 +29,18 @@ ___
 | [exec.c](./exec.c) | File containing helper functions that deals with reading input, excuting commands and checking main arguments |
 | [list_func.c](./list_funct.c) | File containing functions that deals with linked list functions |
 | [tokenize.c](./tokenize.c) | File containing functions that deals with string tokenization of strings |
-
-
+___
+## How to compile and run
+* Compile with `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
+* Run `./hsh`
+___
+## Features
+* Handles the command with it's path `/bin/ls`
+* Handles the command without it's path `ls`
+* Handles the command with arguments `ls -la /home`
+* Handles builtins like `cd` , `env` `exit 98`, `setenv` and `unsetenv`
+* Doesn't handle the command separation with `;`
+___
+## Authors
+* **Mostafa Ehab** - [mostafaehab96](@mostafaehab)
+*  **Iman Hamza** - [Imanhamza](@Imanhamza)
