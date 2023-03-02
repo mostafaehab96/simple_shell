@@ -1,6 +1,0 @@
-exit
-ls -la
-ls
-pwd
-exit lkjsdf
-exit 98
