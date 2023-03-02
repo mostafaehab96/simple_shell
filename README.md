@@ -1,21 +1,22 @@
 # 0x16. C - Simple Shell
 This is the second group project in alx software engineering program, first sprint **low_level_programming** , it's about creating a simple shell program that acts like [Bourne shell](https://en.wikipedia.org/wiki/Unix_shell) `sh`
 ___
-## Functions and system calls we used
-* `access` (man 2 access)
-* `chdir` (man 2 chdir)
-* `execve` (man 2 execve)
-* `exit` (man 3 exit)
-* `fork` (man 2 fork)
-* `getline` (man 3 getline)
-* `getpid` (man 2 getpid)
-* `isatty` (man 3 isatty)
-* `malloc` (man 3 malloc)
-* `realloc` (man 3 realloc)
-* `perror` (man 3 perror)
-* `strtok` (man 3 strtok)
-* `wait` (man 2 wait)
-* `fprintf` (man 3 fprintf)
+## Library Functions and System Calls
+* [`access`](https://manual.cs50.io/2/access)
+* [`chdir`](https://manual.cs50.io/2/chdir)
+* [`execve`](https://manual.cs50.io/2/execve)
+* [`exit`](https://manual.cs50.io/2/exit)
+* [`fork`](https://manual.cs50.io/2/fork)
+* [`getline`](https://manual.cs50.io/3/getline)
+* [`getpid`](https://manual.cs50.io/2/getpid)
+* [`isatty`](https://manual.cs50.io/3/isatty)
+* [`malloc`](https://manual.cs50.io/3/malloc)
+* [`realloc`](https://manual.cs50.io/3/realloc)
+* [`perror`](https://manual.cs50.io/3/perror)
+* [`strtok`](https://manual.cs50.io/3/strtok)
+* [`wait`](https://manual.cs50.io/2/wait)
+* [`fprintf`](https://manual.cs50.io/3/fprintf)
+* [`atoi`](https://manual.cs50.io/3/atoi)
 ___
 ## Files Structure
 
