@@ -40,7 +40,8 @@ ___
 * Handles the command without it's path `ls`
 * Handles the command with arguments `ls -la /home`
 * Handles builtins like `cd` , `env` `exit 98`, `setenv` and `unsetenv`
-* Doesn't handle the command separation with `;`
+* Handles the command separation with `;`
+* Doesn't handle separation with (&&, ||), alias command, echo $$ and $?
 ___
 ## Authors
 * **Mostafa Ehab** - [mostafaehab96](https://github.com/mostafaehab96)
